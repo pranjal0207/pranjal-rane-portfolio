@@ -3,6 +3,7 @@ import 'package:pranjal_rane_portfolio/widgets/aboutPage.dart';
 import 'package:pranjal_rane_portfolio/widgets/contactPage.dart';
 import 'package:pranjal_rane_portfolio/widgets/navigationBarItem.dart';
 import 'package:pranjal_rane_portfolio/widgets/projectsPage.dart';
+import 'package:pranjal_rane_portfolio/widgets/titleName.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -14,6 +15,7 @@ class _HomePageState extends State<HomePage>{
   final aboutKey = GlobalKey();
   final projectKey = GlobalKey();
   final contactKey = GlobalKey();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool aboutPageActive = true;
   bool projectPageActive = false;
@@ -39,6 +41,8 @@ class _HomePageState extends State<HomePage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: mobileDrawer(),
       body: SafeArea(
         child: LayoutBuilder(builder: (context, constraints){
           if (constraints.maxWidth > 715)
@@ -60,16 +64,7 @@ class _HomePageState extends State<HomePage>{
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Container(
-                child: Text(
-                  "PRANJAL RANE",
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    //color: Colors.white
-                  ),
-                ),
-              ),
+              TitleName(),
 
               Row(
                 children: <Widget>[
@@ -154,13 +149,79 @@ class _HomePageState extends State<HomePage>{
   }
 
   Widget mobileView() {
-    return Container(
-      child: Center(
-        child: Text(
-          "Mobile"
+    return Column(
+      children: <Widget>[
+        Container(
+          padding: EdgeInsets.only(top: 15, bottom: 15),
+          child: Row(
+            children: <Widget>[
+              Container(
+                child: IconButton(
+                  onPressed: (){
+                    _scaffoldKey.currentState!.openDrawer();
+                  },
+                  icon: Icon(Icons.menu),
+                  iconSize: 30,
+                ),
+              ),
+
+              SizedBox(
+                width: 10,
+              ),
+
+              TitleName()
+            ],
+          ),
         ),
+
+        Expanded(
+          child: Scrollbar(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    key: aboutKey,
+                    child: AboutPage(),
+                  ),
+
+                  Container(
+                    key: projectKey,
+                    child: ProjectPage(),
+                  ),
+
+                  Container(
+                    key: contactKey,
+                    child: ContactPage(),
+                  ),
+                ],
+              ),
+            )
+          )
+        )
+      ],
+    );
+  }
+
+  Widget mobileDrawer(){
+    return Drawer(
+      child: Column(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(top: 20, bottom: 40),
+            child: TitleName(),
+          ),
+
+          Container(
+            margin: EdgeInsets.only(left : 10, right: 10),
+            child : Divider(
+              thickness: 1,
+              color: Colors.black,
+            )
+          )
+        ],
       ),
     );
   }
+
 }
 
