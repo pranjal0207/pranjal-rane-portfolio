@@ -6,10 +6,12 @@ import 'mobileDrawerItem.dart';
 class MobileDrawer extends StatefulWidget {
   final List<String> drawerItems;
   final List<dynamic> drawerItemsKey;
+  final List<bool> mobileDrawerActiveState;
 
   const MobileDrawer({ 
     required this.drawerItems,
     required this.drawerItemsKey,
+    required this.mobileDrawerActiveState,
     Key? key 
   }) : super(key: key);
 
@@ -18,8 +20,6 @@ class MobileDrawer extends StatefulWidget {
 }
 
 class _MobileDrawerState extends State<MobileDrawer> {
-  List<bool> mobileDrawerActiveState = [];
-
   Future scrollPage(key) async{
     final context = key.currentContext!;
 
@@ -30,20 +30,9 @@ class _MobileDrawerState extends State<MobileDrawer> {
     );
   }
 
-  void initActiveStateController(){
-    mobileDrawerActiveState[0] = true;
-    for (int i = 1; i < widget.drawerItems.length; i++){
-      setState(() {
-        mobileDrawerActiveState[i] = false;
-      });
-    }
-  }
-
   @override
   void initState() {
     super.initState();
-    mobileDrawerActiveState = List<bool>.filled(widget.drawerItems.length, false);
-    mobileDrawerActiveState[0] = true;
   }
 
   @override
@@ -73,17 +62,18 @@ class _MobileDrawerState extends State<MobileDrawer> {
                   height: 200 / widget.drawerItems.length,
                   child: MobileDrawerItem(
                     title: widget.drawerItems[index], 
-                    isActive: mobileDrawerActiveState[index],
+                    isActive: widget.mobileDrawerActiveState[index],
                     onPress: (){
+                      scrollPage(widget.drawerItemsKey[index]);
                       setState(() {
                         for (int i = 0; i < widget.drawerItems.length; i++){
-                          if(i == index)
-                            mobileDrawerActiveState[i] = true;
+                          if(i == index){
+                            widget.mobileDrawerActiveState[i] = true;}
                           else 
-                            mobileDrawerActiveState[i] = false;
+                            widget.mobileDrawerActiveState[i] = false;
                         }
+                        
                       });
-                      scrollPage(widget.drawerItemsKey[index]);
                       Navigator.pop(context);
                     }
                   ),

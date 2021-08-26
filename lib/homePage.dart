@@ -24,6 +24,9 @@ class _HomePageState extends State<HomePage>{
   List<String> navigationBarItems = ['About', 'Projects', 'Contact'];
   List<dynamic> navigationItemsKeys = [];
 
+  List<bool> mobileDrawerActiveState = [];
+
+
   final double maxWidth = 1400;
 
   Future scrollPage(key) async{
@@ -40,6 +43,8 @@ class _HomePageState extends State<HomePage>{
   void initState() {
     super.initState();
     navigationItemsKeys = [aboutKey, projectKey, contactKey];
+    mobileDrawerActiveState = List<bool>.filled(navigationBarItems.length, false);
+    mobileDrawerActiveState[0] = true;
   }
 
   @override
@@ -49,6 +54,7 @@ class _HomePageState extends State<HomePage>{
       drawer: MobileDrawer(
         drawerItems: navigationBarItems,
         drawerItemsKey: navigationItemsKeys,
+        mobileDrawerActiveState: mobileDrawerActiveState,
       ),
       body: SafeArea(
         child: LayoutBuilder(builder: (context, constraints){
