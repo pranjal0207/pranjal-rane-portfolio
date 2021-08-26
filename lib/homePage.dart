@@ -1,15 +1,12 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
+import 'package:pranjal_rane_portfolio/widgets/NavigationBar.dart';
 import 'package:pranjal_rane_portfolio/widgets/aboutPage.dart';
 import 'package:pranjal_rane_portfolio/widgets/contactPage.dart';
-import 'package:pranjal_rane_portfolio/widgets/drawerItem.dart';
-import 'package:pranjal_rane_portfolio/widgets/navigationBarItem.dart';
+import 'package:pranjal_rane_portfolio/widgets/mobileDrawer.dart';
 import 'package:pranjal_rane_portfolio/widgets/projectsPage.dart';
 import 'package:pranjal_rane_portfolio/widgets/titleName.dart';
 
 class HomePage extends StatefulWidget {
-
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -23,6 +20,9 @@ class _HomePageState extends State<HomePage>{
   bool aboutPageActive = true;
   bool projectPageActive = false;
   bool contactPageActive = false;
+
+  List<String> navigationBarItems = ['About', 'Projects', 'Contact'];
+  List<dynamic> navigationItemsKeys = [];
 
   final double maxWidth = 1400;
 
@@ -39,20 +39,24 @@ class _HomePageState extends State<HomePage>{
   @override
   void initState() {
     super.initState();
+    navigationItemsKeys = [aboutKey, projectKey, contactKey];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      drawer: mobileDrawer(),
+      drawer: MobileDrawer(
+        drawerItems: navigationBarItems,
+        drawerItemsKey: navigationItemsKeys,
+      ),
       body: SafeArea(
         child: LayoutBuilder(builder: (context, constraints){
           if (constraints.maxWidth > 715)
             return desktopView();
           
           else
-           return mobileView();
+            return mobileView();
         })
       ),
     );
@@ -69,56 +73,10 @@ class _HomePageState extends State<HomePage>{
             children: <Widget>[
               TitleName(),
 
-              Row(
-                children: <Widget>[
-                  NavigationBarItem(
-                    title: "ABOUT",
-                    isActive: aboutPageActive, 
-                    onPress: (){
-                      setState(() {
-                        aboutPageActive = true;
-                        projectPageActive = false;
-                        contactPageActive = false;
-                      });
-                      scrollPage(aboutKey);
-                    }
-                  ),
-                  
-                  SizedBox(
-                    width: 20,
-                  ),
-
-                  NavigationBarItem(
-                    title: "PROJECTS", 
-                    isActive: projectPageActive, 
-                    onPress: (){
-                      setState(() {
-                        aboutPageActive = false;
-                        projectPageActive = true;
-                        contactPageActive = false;
-                      });
-                      scrollPage(projectKey);
-                    }
-                  ),
-
-                  SizedBox(
-                    width: 20,
-                  ),
-                    
-                  NavigationBarItem(
-                    title: "CONTACT",
-                    isActive: contactPageActive,  
-                    onPress: (){
-                      setState(() {
-                        aboutPageActive = false;
-                        projectPageActive = false;
-                        contactPageActive = true;
-                      });
-                      scrollPage(contactKey);
-                    }
-                  ),
-                ],
-              ),
+              NavigationBar(
+                navigationItems: navigationBarItems, 
+                navigationItemsKeys: navigationItemsKeys
+              )
             ],
           )
         ),
@@ -204,69 +162,5 @@ class _HomePageState extends State<HomePage>{
       ],
     );
   }
-
-  Widget mobileDrawer(){
-    return Drawer(
-      child: Column(
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.only(top: 30, bottom: 20),
-            child: TitleName(),
-          ),
-
-          Container(
-            margin: EdgeInsets.only(left : 10, right: 10),
-            child : Divider(
-              thickness: 1,
-              color: Colors.black,
-            )
-          ),
-
-          DrawerItem(
-            title: "About", 
-            isActive: aboutPageActive,
-            onPress: (){
-              setState(() {
-                aboutPageActive = true;
-                projectPageActive = false;
-                contactPageActive = false;
-              });
-              scrollPage(aboutKey);
-              Navigator.pop(context);
-            }
-          ),
-
-          DrawerItem(
-            title: "Project", 
-            isActive: projectPageActive,
-            onPress: (){
-              setState(() {
-                aboutPageActive = false;
-                projectPageActive = true;
-                contactPageActive = false;
-              });
-              scrollPage(projectKey);
-              Navigator.pop(context);
-            }
-          ),
-
-          DrawerItem(
-            title: "Contact", 
-            isActive: contactPageActive,
-            onPress: (){
-              setState(() {
-                aboutPageActive = false;
-                projectPageActive = false;
-                contactPageActive = true;
-              });
-              scrollPage(contactKey);
-              Navigator.pop(context);
-            }
-          )
-        ],
-      ),
-    );
-  }
-
 }
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class DrawerItem extends StatelessWidget {
+class MobileDrawerItem extends StatelessWidget {
   final String title;
   final VoidCallback onPress;
   final bool isActive;
 
-  const DrawerItem({ 
+  const MobileDrawerItem({ 
     required this.title,
     required this.onPress,
     required this.isActive,
