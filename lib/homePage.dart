@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pranjal_rane_portfolio/widgets/NavigationBar.dart';
 import 'package:pranjal_rane_portfolio/widgets/aboutPage.dart';
 import 'package:pranjal_rane_portfolio/widgets/contactPage.dart';
+import 'package:pranjal_rane_portfolio/widgets/copyright.dart';
 import 'package:pranjal_rane_portfolio/widgets/mobileDrawer.dart';
 import 'package:pranjal_rane_portfolio/widgets/projectsPage.dart';
 import 'package:pranjal_rane_portfolio/widgets/titleName.dart';
@@ -106,6 +107,8 @@ class _HomePageState extends State<HomePage>{
                     key: contactKey,
                     child: ContactPage(),
                   ),
+
+                  Copyright()
                 ],
               ),
             )
@@ -160,6 +163,8 @@ class _HomePageState extends State<HomePage>{
                     key: contactKey,
                     child: ContactPage(),
                   ),
+
+                  Copyright()
                 ],
               ),
             )
