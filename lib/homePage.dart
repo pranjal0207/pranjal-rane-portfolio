@@ -1,6 +1,9 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:pranjal_rane_portfolio/widgets/aboutPage.dart';
 import 'package:pranjal_rane_portfolio/widgets/contactPage.dart';
+import 'package:pranjal_rane_portfolio/widgets/drawerItem.dart';
 import 'package:pranjal_rane_portfolio/widgets/navigationBarItem.dart';
 import 'package:pranjal_rane_portfolio/widgets/projectsPage.dart';
 import 'package:pranjal_rane_portfolio/widgets/titleName.dart';
@@ -207,7 +210,7 @@ class _HomePageState extends State<HomePage>{
       child: Column(
         children: <Widget>[
           Container(
-            margin: EdgeInsets.only(top: 20, bottom: 40),
+            margin: EdgeInsets.only(top: 30, bottom: 20),
             child: TitleName(),
           ),
 
@@ -217,6 +220,48 @@ class _HomePageState extends State<HomePage>{
               thickness: 1,
               color: Colors.black,
             )
+          ),
+
+          DrawerItem(
+            title: "About", 
+            isActive: aboutPageActive,
+            onPress: (){
+              setState(() {
+                aboutPageActive = true;
+                projectPageActive = false;
+                contactPageActive = false;
+              });
+              scrollPage(aboutKey);
+              Navigator.pop(context);
+            }
+          ),
+
+          DrawerItem(
+            title: "Project", 
+            isActive: projectPageActive,
+            onPress: (){
+              setState(() {
+                aboutPageActive = false;
+                projectPageActive = true;
+                contactPageActive = false;
+              });
+              scrollPage(projectKey);
+              Navigator.pop(context);
+            }
+          ),
+
+          DrawerItem(
+            title: "Contact", 
+            isActive: contactPageActive,
+            onPress: (){
+              setState(() {
+                aboutPageActive = false;
+                projectPageActive = false;
+                contactPageActive = true;
+              });
+              scrollPage(contactKey);
+              Navigator.pop(context);
+            }
           )
         ],
       ),
