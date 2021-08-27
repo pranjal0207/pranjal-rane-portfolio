@@ -7,18 +7,34 @@ class Copyright extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 100,
+      height: 80,
       decoration: BoxDecoration(
         color: Color(0XFF242830)
       ),
-      child: Center(
-        child: Text(
-          "Copyright 2021 Pranjal Rane. All Rights Reserved.",
-          style: TextStyle(
-            color: Colors.white
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+          "Copyright ",
+            style: TextStyle(
+              color: Colors.white
+            ),
           ),
-        ),
-      )
+
+          Icon(
+            Icons.copyright_sharp,
+            color: Colors.white,
+            size: 15,
+          ),
+
+          Text(
+          " 2021 Pranjal Rane. All Rights Reserved.",
+            style: TextStyle(
+              color: Colors.white
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
