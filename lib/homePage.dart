@@ -72,20 +72,9 @@ class _HomePageState extends State<HomePage>{
   Widget desktopView() {
     return Column(
       children: <Widget>[
-        Container(
-          padding: EdgeInsets.only(top : 25, bottom: 25, left: 15, right: 15),
-          constraints: BoxConstraints(maxWidth: maxWidth),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              TitleName(),
-
-              NavigationBar(
-                navigationItems: navigationBarItems, 
-                navigationItemsKeys: navigationItemsKeys
-              )
-            ],
-          )
+        NavigationBar(
+          navigationItems: navigationBarItems, 
+          navigationItemsKeys: navigationItemsKeys
         ),
         
         Expanded(

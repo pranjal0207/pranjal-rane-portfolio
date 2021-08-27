@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pranjal_rane_portfolio/widgets/navigationBarItem.dart';
+import 'package:pranjal_rane_portfolio/widgets/titleName.dart';
 
 class NavigationBar extends StatefulWidget {
   final List<String> navigationItems;
@@ -46,34 +47,46 @@ class _NavigationBarState extends State<NavigationBar> {
 
   @override
   Widget build(BuildContext context) {
+    final double maxWidth = 1400;
     final double screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: 50,
-      width: screenWidth * 0.25,
-      child: ListView.builder(
-        itemCount: widget.navigationItems.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index){
-          return Container(
+      padding: EdgeInsets.only(top : 25, bottom: 25, left: 15, right: 15),
+      constraints: BoxConstraints(maxWidth: maxWidth),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          TitleName(),
+
+          Container(
             height: 50,
-            width: screenWidth * 0.25 / widget.navigationItems.length,
-            child: NavigationBarItem(
-              title: widget.navigationItems[index], 
-              isActive: navigationItemActiveState[index], 
-              onPress: (){
-                scrollPage(widget.navigationItemsKeys[index]);
-                setState(() {
-                  for (int i = 0; i < widget.navigationItems.length; i++){
-                    if(i == index)
-                      navigationItemActiveState[i] = true;
-                    else 
-                      navigationItemActiveState[i] = false;
-                  }
-                });
+            width: screenWidth * 0.25,
+            child: ListView.builder(
+              itemCount: widget.navigationItems.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index){
+                return Container(
+                  height: 50,
+                  width: screenWidth * 0.25 / widget.navigationItems.length,
+                  child: NavigationBarItem(
+                    title: widget.navigationItems[index], 
+                    isActive: navigationItemActiveState[index], 
+                    onPress: (){
+                      scrollPage(widget.navigationItemsKeys[index]);
+                      setState(() {
+                        for (int i = 0; i < widget.navigationItems.length; i++){
+                          if(i == index)
+                            navigationItemActiveState[i] = true;
+                          else 
+                            navigationItemActiveState[i] = false;
+                        }
+                      });
+                    }
+                  ),
+                );
               }
             ),
-          );
-        }
+          )
+        ],
       ),
     );
   }
