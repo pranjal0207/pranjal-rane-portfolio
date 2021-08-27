@@ -22,30 +22,16 @@ class _HomePageState extends State<HomePage>{
   bool projectPageActive = false;
   bool contactPageActive = false;
 
-  List<String> navigationBarItems = ['About', 'Projects', 'Contact'];
+  List<String> navigationItems = ['About', 'Projects', 'Contact'];
   List<dynamic> navigationItemsKeys = [];
-
-  List<bool> mobileDrawerActiveState = [];
-
-
-  final double maxWidth = 1400;
-
-  Future scrollPage(key) async{
-    final context = key.currentContext!;
-
-    await Scrollable.ensureVisible(
-      context,
-      alignment: 0.5,
-      duration: Duration(milliseconds: 500)
-    );
-  }
+  List<bool> navigationItemActiveState = [];
 
   @override
   void initState() {
     super.initState();
     navigationItemsKeys = [aboutKey, projectKey, contactKey];
-    mobileDrawerActiveState = List<bool>.filled(navigationBarItems.length, false);
-    mobileDrawerActiveState[0] = true;
+    navigationItemActiveState = List<bool>.filled(navigationItems.length, false);
+    navigationItemActiveState[0] = true;
   }
 
   @override
@@ -53,9 +39,9 @@ class _HomePageState extends State<HomePage>{
     return Scaffold(
       key: _scaffoldKey,
       drawer: MobileDrawer(
-        drawerItems: navigationBarItems,
+        drawerItems: navigationItems,
         drawerItemsKey: navigationItemsKeys,
-        mobileDrawerActiveState: mobileDrawerActiveState,
+        mobileDrawerActiveState: navigationItemActiveState,
       ),
       body: SafeArea(
         child: LayoutBuilder(builder: (context, constraints){
@@ -73,8 +59,9 @@ class _HomePageState extends State<HomePage>{
     return Column(
       children: <Widget>[
         NavigationBar(
-          navigationItems: navigationBarItems, 
-          navigationItemsKeys: navigationItemsKeys
+          navigationItems: navigationItems, 
+          navigationItemsKeys: navigationItemsKeys,
+          navigationItemActiveState : navigationItemActiveState
         ),
         
         Expanded(

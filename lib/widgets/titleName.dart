@@ -6,13 +6,13 @@ class TitleName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text(
+      child: SelectableText(
         "PRANJAL RANE",
         style: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
         ),
-      ),
+      )
     );
   }
 }

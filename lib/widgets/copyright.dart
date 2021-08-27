@@ -14,7 +14,7 @@ class Copyright extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(
+          SelectableText(
           "Copyright ",
             style: TextStyle(
               color: Colors.white
@@ -27,7 +27,7 @@ class Copyright extends StatelessWidget {
             size: 15,
           ),
 
-          Text(
+          SelectableText(
           " 2021 Pranjal Rane. All Rights Reserved.",
             style: TextStyle(
               color: Colors.white
