@@ -4,8 +4,8 @@ import 'package:pranjal_rane_portfolio/widgets/aboutPage.dart';
 import 'package:pranjal_rane_portfolio/widgets/contactPage.dart';
 import 'package:pranjal_rane_portfolio/widgets/copyright.dart';
 import 'package:pranjal_rane_portfolio/widgets/mobileDrawer.dart';
+import 'package:pranjal_rane_portfolio/widgets/mobileNavigationBar.dart';
 import 'package:pranjal_rane_portfolio/widgets/projectsPage.dart';
-import 'package:pranjal_rane_portfolio/widgets/titleName.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -110,28 +110,7 @@ class _HomePageState extends State<HomePage>{
   Widget mobileView() {
     return Column(
       children: <Widget>[
-        Container(
-          padding: EdgeInsets.only(top: 15, bottom: 15),
-          child: Row(
-            children: <Widget>[
-              Container(
-                child: IconButton(
-                  onPressed: (){
-                    _scaffoldKey.currentState!.openDrawer();
-                  },
-                  icon: Icon(Icons.menu),
-                  iconSize: 30,
-                ),
-              ),
-
-              SizedBox(
-                width: 10,
-              ),
-
-              TitleName()
-            ],
-          ),
-        ),
+        MobileNavigationBar(scaffoldKey: _scaffoldKey),
 
         Expanded(
           child: Scrollbar(
