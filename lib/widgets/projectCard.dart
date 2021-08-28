@@ -10,6 +10,7 @@ class ProjectCard extends StatelessWidget {
   final String githubRepo;
   final bool paperAvailable;
   final String paperLink;
+  final List<String> technologies;
 
   const ProjectCard({ 
     required this.title,
@@ -18,6 +19,7 @@ class ProjectCard extends StatelessWidget {
     required this.githubRepo,
     required this.paperAvailable,
     required this.paperLink,
+    required this.technologies,
     Key? key
   }) : super(key: key);
 
@@ -29,6 +31,7 @@ class ProjectCard extends StatelessWidget {
       shadowColor: Colors.black,
       borderRadius: BorderRadius.circular(10),
       child: Container(
+        height: 700,
         width: (maxWidth - 80) /3,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,6 +45,11 @@ class ProjectCard extends StatelessWidget {
               githubRepo: githubRepo,
               paperAvailable: paperAvailable,
               paperLink: paperLink,
+            ),
+
+            if(technologies.length > 0)
+            ProjectTechnologies(
+              technologies: technologies
             ),            
 
             ProjectDescription(
@@ -158,7 +166,7 @@ class ProjectDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      //height: 300,
       margin: EdgeInsets.only(top: 15, left: 10, right: 10),
       child: Column(
         children : <Widget>[
@@ -169,6 +177,56 @@ class ProjectDescription extends StatelessWidget {
               style: TextStyle(
                 fontSize: 17
               ),
+            ),
+          )
+        ]
+      ),
+    );
+  }
+}
+
+class ProjectTechnologies extends StatelessWidget {
+  final List<String> technologies;
+  const ProjectTechnologies({ 
+    required this.technologies,
+    Key? key 
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(left : 10, right: 20, top: 15),
+      child: Row(
+        children: <Widget>[
+          Container(
+            child: Text(
+              "Tecnologies : ",
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.bold
+              ),
+            ),
+          ),
+
+          Container(
+            height: 21,
+            width: 40.0 * technologies.length,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: technologies.length,
+              itemBuilder: (context, index){
+                String technologyIcon = technologies[index];
+                String asset = "assets/icons/" + technologyIcon + "Icon.png";
+                print(asset);
+                return Container(
+                  margin: EdgeInsets.only(right: 3),
+                  child: Image.asset(
+                    asset,
+                    height: 30,
+                    width: 30,
+                  )
+                );
+              }
             ),
           )
         ]
