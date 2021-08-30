@@ -24,7 +24,6 @@ class _NavigationBarState extends State<NavigationBar> {
 
     await Scrollable.ensureVisible(
       context,
-      alignment: 0.5,
       duration: Duration(milliseconds: 500)
     );
   }

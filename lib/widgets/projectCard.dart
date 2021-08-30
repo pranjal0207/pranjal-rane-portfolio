@@ -29,7 +29,7 @@ class ProjectCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return PhysicalModel(
       color: Colors.white,
-      elevation: 4,
+      elevation: 6,
       shadowColor: Colors.black,
       borderRadius: BorderRadius.circular(10),
       child: Container(
@@ -244,13 +244,12 @@ class ProjectTechnologies extends StatelessWidget {
               itemBuilder: (context, index){
                 String technologyIcon = technologies[index];
                 String asset = "assets/icons/" + technologyIcon + "Icon.png";
-                print(technologies);
                 return Container(
                   margin: EdgeInsets.only(right: 3),
                   child: Image.asset(
                     asset,
-                    height: 30,
-                    width: 30,
+                    height: 35,
+                    width: 35,
                   )
                 );
               }
@@ -281,11 +280,11 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-                      width : (screenWidth > 715)? maxWidth * 0.8 : screenWidth * 0.9,
+                      width : (screenWidth > 715)? maxWidth * 0.8 : screenWidth * 0.7,
                       child: SelectableText(
                         title,
                         style: TextStyle(
-                          fontSize: 25,
+                          fontSize: 27,
                           fontWeight: FontWeight.bold
                         ),
                       ),
@@ -313,8 +312,9 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
                 child: Row(
                   children: <Widget>[
                     Container(
+                      width: (screenWidth > 715)? ((maxWidth - 40) * 0.2) : null,
                       child: Text(
-                        "Technologies Used : ",
+                        (screenWidth > 715)? "Technologies Used : " : "Technologies:",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold
@@ -323,44 +323,49 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
                     ),
 
                     SizedBox(
-                      height: 30,
+                      height: 20,
                     ),
 
+                    if(screenWidth > 715)
                     Expanded(
                       child: Column(
                         children: <Widget>[
-                          for(i = 0; i < technologies.length; i = i + 3)
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              for (int j = i; j < i + 3 && j < technologies.length; j ++)
-                              Row(
-                                children: <Widget>[
-                                  Container(
-                                    margin: EdgeInsets.only(right: 3),
-                                    child: Image.asset(
-                                      "assets/icons/" + technologies[j] + "Icon.png",
-                                      height: 40,
-                                      width: 40,
-                                    )
-                                  ),
-
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-
-                                  Container(
-                                    child: SelectableText(
-                                      technologies[j][0].toUpperCase() + technologies[j].substring(1) + j.toString() + i.toString() + (technologies.length / 3).ceil().toString(),
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold
+                          for(i = 0; i < technologies.length; i = i + 5)
+                          Container(
+                            margin: (technologies.length > 5)? EdgeInsets.only(bottom: 20) : EdgeInsets.zero,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                for (j = i; j < i + 5 && j < technologies.length; j ++)
+                                Container(
+                                  width: ((maxWidth - 40) * 0.8) / 5,
+                                  child : Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: <Widget>[
+                                      Container(
+                                        margin: EdgeInsets.only(right: 3),
+                                        child: Image.asset(
+                                          "assets/icons/" + technologies[j] + "Icon.png",
+                                          height: 40,
+                                          width: 40,
+                                        )
                                       ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
+
+                                      if((screenWidth > 715))
+                                      Container(
+                                        child: SelectableText(
+                                          technologies[j][0].toUpperCase() + technologies[j].substring(1),
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            )
                           )
                         ],
                       ),
@@ -369,10 +374,55 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
                 )
               ),
 
+              if(screenWidth < 715)
+              Container(
+                height: 40,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: technologies.length,
+                  itemBuilder: (context, i){
+                    return Container(
+                      width: (screenWidth * 0.7)/technologies.length,
+                      child : Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Container(
+                            margin: EdgeInsets.only(right: 3),
+                            child: Image.asset(
+                              "assets/icons/" + technologies[i] + "Icon.png",
+                              height: 40,
+                              width: 40,
+                            )
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                ),
+              ),
+
+              SizedBox(
+                height: 20,
+              ),
+
               Container(
                 child: SelectableText(
-                  "Description"
+                  "Description : ",
+                  style:TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold
+                  ),
                 ),
+              ),
+
+              Expanded(
+                child: SingleChildScrollView(
+                  child : Container(
+                    child: SelectableText(
+                      longDescription
+                    ),
+                  )
+                )
               )
             ],
           ),
