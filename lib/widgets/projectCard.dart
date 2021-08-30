@@ -55,7 +55,10 @@ class ProjectCard extends StatelessWidget {
             ),
 
             ProjectDescription(
-              description: description
+              title: title,
+              description: description,
+              longDescription: longDescription,
+              technologies: technologies,
             )
           ],
         ),
@@ -159,8 +162,15 @@ class ProjectTitle extends StatelessWidget {
 }
 
 class ProjectDescription extends StatelessWidget {
+  final String title;
+  final List<String> technologies;
   final String description;
+  final String longDescription;
+  
   const ProjectDescription({ 
+    required this.title,
+    required this.technologies,
+    required this.longDescription,
     required this.description,
     Key? key 
   }) : super(key: key);
@@ -183,7 +193,9 @@ class ProjectDescription extends StatelessWidget {
           ),
 
           TextButton(
-            onPressed: (){}, 
+            onPressed: (){
+              showProjectDialog(context, title, technologies, longDescription);
+            }, 
             child: Text("Show more"),
             style: TextButton.styleFrom(
               padding: EdgeInsets.zero,
@@ -201,6 +213,7 @@ class ProjectDescription extends StatelessWidget {
 
 class ProjectTechnologies extends StatelessWidget {
   final List<String> technologies;
+
   const ProjectTechnologies({ 
     required this.technologies,
     Key? key 
@@ -231,6 +244,7 @@ class ProjectTechnologies extends StatelessWidget {
               itemBuilder: (context, index){
                 String technologyIcon = technologies[index];
                 String asset = "assets/icons/" + technologyIcon + "Icon.png";
+                print(technologies);
                 return Container(
                   margin: EdgeInsets.only(right: 3),
                   child: Image.asset(
@@ -246,4 +260,124 @@ class ProjectTechnologies extends StatelessWidget {
       ),
     );
   }
+}
+
+showProjectDialog(BuildContext context, String title, List<String> technologies, String longDescription){
+  int i, j;
+  double screenWidth = MediaQuery.of(context).size.width;
+  return showDialog(
+    context: context, 
+    builder: (context){
+      return Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Container(
+          padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
+          width: (screenWidth > 715)? maxWidth : screenWidth * 0.9,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                      width : (screenWidth > 715)? maxWidth * 0.8 : screenWidth * 0.9,
+                      child: SelectableText(
+                        title,
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ),
+
+                    if((screenWidth > 715))
+                    Container(
+                      child: IconButton(
+                        onPressed: (){
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(Icons.close),
+                        tooltip: "Close",
+                      ),
+                    )
+                  ],
+                ),
+              ),
+
+              SizedBox(
+                height: 20,
+              ),
+
+              Container(
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      child: Text(
+                        "Technologies Used : ",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 30,
+                    ),
+
+                    Expanded(
+                      child: Column(
+                        children: <Widget>[
+                          for(i = 0; i < technologies.length; i = i + 3)
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              for (int j = i; j < i + 3 && j < technologies.length; j ++)
+                              Row(
+                                children: <Widget>[
+                                  Container(
+                                    margin: EdgeInsets.only(right: 3),
+                                    child: Image.asset(
+                                      "assets/icons/" + technologies[j] + "Icon.png",
+                                      height: 40,
+                                      width: 40,
+                                    )
+                                  ),
+
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+
+                                  Container(
+                                    child: SelectableText(
+                                      technologies[j][0].toUpperCase() + technologies[j].substring(1) + j.toString() + i.toString() + (technologies.length / 3).ceil().toString(),
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                )
+              ),
+
+              Container(
+                child: SelectableText(
+                  "Description"
+                ),
+              )
+            ],
+          ),
+        )
+      );
+    }
+  );
 }

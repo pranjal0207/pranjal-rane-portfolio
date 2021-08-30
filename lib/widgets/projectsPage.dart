@@ -14,8 +14,9 @@ class ProjectPage extends StatelessWidget {
             child: SelectableText(
               "MY PROJECTS",
               style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                decoration: TextDecoration.underline
               ),
             ),
           ),
@@ -39,6 +40,7 @@ class ProjectPage extends StatelessWidget {
       constraints: BoxConstraints(maxWidth: maxWidth),
       margin: EdgeInsets.only(top: 40, bottom: 40, left: 15, right: 15),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,7 +52,7 @@ class ProjectPage extends StatelessWidget {
                 githubRepo: "https://github.com/pranjal0207", 
                 paperAvailable: true, 
                 paperLink: "https://www.ijariit.com/manuscripts/v7i4/V7I4-1684.pdf",
-                technologies: ["python", "tensorflow", "flutter"],
+                technologies: ["python", "tensorflow", "flutter", "firebase", "opencv"],
                 longDescription: "",
               ),
 
@@ -86,6 +88,7 @@ class ProjectPage extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 40, bottom: 40),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           ProjectCard(
             title: "Web Based System for Face Mask Detection & Face Recognition", 
@@ -94,7 +97,7 @@ class ProjectPage extends StatelessWidget {
             githubRepo: "https://github.com/pranjal0207", 
             paperAvailable: true, 
             paperLink: "https://www.ijariit.com/manuscripts/v7i4/V7I4-1684.pdf",
-            technologies: ["python", "tensorflow", "flutter"],
+            technologies: ["python", "tensorflow", "flutter", "firebase", "opencv"],
             longDescription: "",
           ),
 
