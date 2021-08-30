@@ -11,10 +11,12 @@ class ProjectCard extends StatelessWidget {
   final bool paperAvailable;
   final String paperLink;
   final List<String> technologies;
+  final String longDescription;
 
   const ProjectCard({ 
     required this.title,
     required this.description,
+    required this.longDescription,
     required this.image,
     required this.githubRepo,
     required this.paperAvailable,
@@ -50,7 +52,7 @@ class ProjectCard extends StatelessWidget {
             if(technologies.length > 0)
             ProjectTechnologies(
               technologies: technologies
-            ),            
+            ),
 
             ProjectDescription(
               description: description
@@ -166,9 +168,9 @@ class ProjectDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //height: 300,
       margin: EdgeInsets.only(top: 15, left: 10, right: 10),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children : <Widget>[
           Container(
             child: SelectableText(
@@ -177,6 +179,18 @@ class ProjectDescription extends StatelessWidget {
               style: TextStyle(
                 fontSize: 17
               ),
+            ),
+          ),
+
+          TextButton(
+            onPressed: (){}, 
+            child: Text("Show more"),
+            style: TextButton.styleFrom(
+              padding: EdgeInsets.zero,
+              textStyle: TextStyle(
+                color: Colors.blue,
+                decoration: TextDecoration.underline
+              )
             ),
           )
         ]
@@ -217,7 +231,6 @@ class ProjectTechnologies extends StatelessWidget {
               itemBuilder: (context, index){
                 String technologyIcon = technologies[index];
                 String asset = "assets/icons/" + technologyIcon + "Icon.png";
-                print(asset);
                 return Container(
                   margin: EdgeInsets.only(right: 3),
                   child: Image.asset(
