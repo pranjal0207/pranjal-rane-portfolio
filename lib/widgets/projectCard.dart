@@ -402,54 +402,58 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
               ),
 
               Expanded(
-                child: SingleChildScrollView(
-                  child : Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        child: SelectableText(
-                          longDescription,
-                          style: TextStyle(
-                            fontSize: 15
+                child: Scrollbar(
+                  isAlwaysShown: true,
+                  child: SingleChildScrollView(
+                    child : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          child: SelectableText(
+                            longDescription,
+                            style: TextStyle(
+                              fontSize: 15
+                            ),
                           ),
                         ),
-                      ),
 
-                      if(projectScreenshots.length > 0)
-                      Container(
-                        child: Text(
-                          "Project Screenshots : ",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold
+                        if(projectScreenshots.length > 0)
+                        Container(
+                          child: Text(
+                            "Project Screenshots : ",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold
+                            ),
                           ),
                         ),
-                      ),
 
-                      SizedBox(
-                        height: 20,
-                      ),
-
-                      Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            for (i = 0; i < projectScreenshots.length; i= i+3)
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                for (j = i; i < i+3 && j < projectScreenshots.length; j++)
-                                Container(
-                                  width: (maxWidth - 80)/3,
-                                  child: Image.asset(projectScreenshots[j]),
-                                )
-                              ],
-                            )
-                          ],
+                        SizedBox(
+                          height: 20,
                         ),
-                      )
-                    ],
-                  )
+
+                        Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              for (i = 0; i < projectScreenshots.length; i= i + 3)
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  for (j = i; j < i + 3 && j < projectScreenshots.length; j++)
+                                  Container(
+                                    margin: EdgeInsets.only(bottom: 15),
+                                    width: (maxWidth - 100)/3,
+                                    child: Image.asset(projectScreenshots[j]),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    )
+                  ),
                 )
               )
             ],
