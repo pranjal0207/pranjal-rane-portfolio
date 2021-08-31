@@ -6,22 +6,24 @@ final double maxWidth = 1200;
 class ProjectCard extends StatelessWidget {
   final String title;
   final String description;
-  final String image;
+  final String coverImage;
   final String githubRepo;
   final bool paperAvailable;
   final String paperLink;
   final List<String> technologies;
   final String longDescription;
+  final List<String> projectScreenshots;
 
   const ProjectCard({ 
     required this.title,
     required this.description,
     required this.longDescription,
-    required this.image,
+    required this.coverImage,
     required this.githubRepo,
     required this.paperAvailable,
     required this.paperLink,
     required this.technologies,
+    required this.projectScreenshots,
     Key? key
   }) : super(key: key);
 
@@ -39,7 +41,7 @@ class ProjectCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             ProjectImage(
-              image: image
+              coverImage: coverImage
             ),
 
             ProjectTitle(
@@ -59,6 +61,7 @@ class ProjectCard extends StatelessWidget {
               description: description,
               longDescription: longDescription,
               technologies: technologies,
+              projectScreenshots: [],
             )
           ],
         ),
@@ -68,9 +71,9 @@ class ProjectCard extends StatelessWidget {
 }
 
 class ProjectImage extends StatelessWidget {
-  final String image;
+  final String coverImage;
   const ProjectImage({ 
-    required this.image,
+    required this.coverImage,
     Key? key 
   }) : super(key: key);
 
@@ -83,7 +86,7 @@ class ProjectImage extends StatelessWidget {
           topRight: Radius.circular(10),
         ),
         child: Image.asset(
-          image,
+          coverImage,
           height: 200,
           width: (maxWidth - 80) /3,
           fit: BoxFit.fill,
@@ -136,7 +139,11 @@ class ProjectTitle extends StatelessWidget {
                     onPressed: (){
                       js.context.callMethod('open', [paperLink]);
                     }, 
-                    icon: Image.asset("assets/icons/pdfIcon.png"),
+                    icon: Image.asset(
+                      "assets/icons/pdfIcon.png",
+                      height: 30,
+                      width: 30,
+                    ),
                     splashColor: Colors.transparent,
                     splashRadius: 0.1,
                     tooltip : "View Research Paper"
@@ -166,17 +173,21 @@ class ProjectDescription extends StatelessWidget {
   final List<String> technologies;
   final String description;
   final String longDescription;
+  final List<String> projectScreenshots;
   
   const ProjectDescription({ 
     required this.title,
     required this.technologies,
     required this.longDescription,
     required this.description,
+    required this.projectScreenshots,
     Key? key 
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print(projectScreenshots);
+    double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       margin: EdgeInsets.only(top: 15, left: 10, right: 10),
       child: Column(
@@ -192,9 +203,10 @@ class ProjectDescription extends StatelessWidget {
             ),
           ),
 
+          if(screenWidth > 715)
           TextButton(
             onPressed: (){
-              showProjectDialog(context, title, technologies, longDescription);
+              showProjectDialog(context, title, technologies, longDescription, projectScreenshots);
             }, 
             child: Text("Show more"),
             style: TextButton.styleFrom(
@@ -261,7 +273,8 @@ class ProjectTechnologies extends StatelessWidget {
   }
 }
 
-showProjectDialog(BuildContext context, String title, List<String> technologies, String longDescription){
+showProjectDialog(BuildContext context, String title, List<String> technologies, String longDescription, List<String> projectScreenshots){
+  print(projectScreenshots);
   int i, j;
   double screenWidth = MediaQuery.of(context).size.width;
   return showDialog(
@@ -271,7 +284,7 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Container(
           padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
-          width: (screenWidth > 715)? maxWidth : screenWidth * 0.9,
+          width: maxWidth,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -280,7 +293,7 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-                      width : (screenWidth > 715)? maxWidth * 0.8 : screenWidth * 0.7,
+                      width : maxWidth * 0.8,
                       child: SelectableText(
                         title,
                         style: TextStyle(
@@ -290,7 +303,6 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
                       ),
                     ),
 
-                    if((screenWidth > 715))
                     Container(
                       child: IconButton(
                         onPressed: (){
@@ -312,7 +324,7 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
                 child: Row(
                   children: <Widget>[
                     Container(
-                      width: (screenWidth > 715)? ((maxWidth - 40) * 0.2) : null,
+                      width: (maxWidth - 40) * 0.2,
                       child: Text(
                         (screenWidth > 715)? "Technologies Used : " : "Technologies:",
                         style: TextStyle(
@@ -326,7 +338,6 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
                       height: 20,
                     ),
 
-                    if(screenWidth > 715)
                     Expanded(
                       child: Column(
                         children: <Widget>[
@@ -374,33 +385,6 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
                 )
               ),
 
-              if(screenWidth < 715)
-              Container(
-                height: 40,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: technologies.length,
-                  itemBuilder: (context, i){
-                    return Container(
-                      width: (screenWidth * 0.7)/technologies.length,
-                      child : Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.only(right: 3),
-                            child: Image.asset(
-                              "assets/icons/" + technologies[i] + "Icon.png",
-                              height: 40,
-                              width: 40,
-                            )
-                          ),
-                        ],
-                      ),
-                    );
-                  }
-                ),
-              ),
-
               SizedBox(
                 height: 20,
               ),
@@ -415,12 +399,40 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
                 ),
               ),
 
+              SizedBox(
+                height: 10,
+              ),
+
               Expanded(
                 child: SingleChildScrollView(
-                  child : Container(
-                    child: SelectableText(
-                      longDescription
-                    ),
+                  child : Column(
+                    children: <Widget>[
+                      Container(
+                        child: SelectableText(
+                          longDescription,
+                          style: TextStyle(
+                            fontSize: 15
+                          ),
+                        ),
+                      ),
+
+                      Container(
+                        child: Column(
+                          children: <Widget>[
+                            for (i = 0; i < projectScreenshots.length; i++)
+                            Row(
+                              children: <Widget>[
+                                for (j = i; i < i+3 && j < projectScreenshots.length; j++)
+                                Container(
+                                  child: Image.asset(projectScreenshots[j]),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      )
+
+                    ],
                   )
                 )
               )

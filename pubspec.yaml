@@ -47,14 +47,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/projectImages/projectStock.jpg
-    - assets/icons/githubIcon.png
-    - assets/icons/pdfIcon.png
-    - assets/icons/flutterIcon.png
-    - assets/icons/pythonIcon.png
-    - assets/icons/tensorflowIcon.png
-    - assets/icons/firebaseIcon.png
-    - assets/icons/opencvIcon.png
+    - assets/projectImages/
+    - assets/icons/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
