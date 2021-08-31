@@ -47,7 +47,7 @@ class ProjectPage extends StatelessWidget {
             children: <Widget>[
               ProjectCard(
                 title: "Web Based System for Face Mask Detection & Face Recognition", 
-                description: "This system detects face masks in real-time videostreams. If no mask is found then a photograph is captured and given as an input to the face recognition system and the data is updated. The administrator is informed about this and can later take necessary actions against the defaulter, like reprimanding by sending an email or issuing a fine using the web based system. The administrator can also manage the database of the people using the web based system. The web based system also gives adetailed overview about the demography (pertaining to maskwearing) of the campus by giving comprehensive information using visual methods like bar graphs and pie charts.", 
+                description: "This system detects face masks in real-time videostreams. If no mask is found then a photograph is captured and given as an input to the face recognition system and the data is updated. The administrator is informed about this and can later take necessary actions against the defaulter, like reprimanding by sending an email or issuing a fine using the web based system.", 
                 coverImage: "assets/projectImages/projectStock.jpg",
                 githubRepo: "https://github.com/pranjal0207", 
                 paperAvailable: true, 
@@ -92,7 +92,7 @@ class ProjectPage extends StatelessWidget {
             children: <Widget>[
               ProjectCard(
                 title: "Web Based System for Face Mask Detection & Face Recognition", 
-                description: "This system detects face masks in real-time videostreams. If no mask is found then a photograph is captured and given as an input to the face recognition system and the data is updated. The administrator is informed about this and can later take necessary actions against the defaulter, like reprimanding by sending an email or issuing a fine using the web based system. The administrator can also manage the database of the people using the web based system. The web based system also gives adetailed overview about the demography (pertaining to maskwearing) of the campus by giving comprehensive information using visual methods like bar graphs and pie charts.", 
+                description: "This system detects face masks in real-time videostreams. If no mask is found then a photograph is captured and given as an input to the face recognition system and the data is updated. The administrator is informed about this and can later take necessary actions against the defaulter, like reprimanding by sending an email or issuing a fine using the web based system.", 
                 coverImage: "assets/projectImages/projectStock.jpg",
                 githubRepo: "https://github.com/pranjal0207", 
                 paperAvailable: true, 
@@ -140,7 +140,7 @@ class ProjectPage extends StatelessWidget {
         children: <Widget>[
           ProjectCard(
             title: "Web Based System for Face Mask Detection & Face Recognition", 
-            description: "This system detects face masks in real-time videostreams. If no mask is found then a photograph is captured and given as an input to the facerecognition system abd the data is updated. Thea dministrator is informed about this and can later take necessary actions against the defaulter, like reprimanding by sending an email or issuing a fine using the web based system. The administrator can also manage the database of the people using the web based system. The web based system also gives adetailed overview about the demography (pertaining to maskwearing) of the campus by giving comprehensive informationusing visual methods like bar graphs and pie charts.", 
+            description: "This system detects face masks in real-time videostreams. If no mask is found then a photograph is captured and given as an input to the facerecognition system abd the data is updated. Thea dministrator is informed about this and can later take necessary actions against the defaulter, like reprimanding by sending an email or issuing a fine using the web based system.", 
             coverImage: "assets/projectImages/projectStock.jpg",
             githubRepo: "https://github.com/pranjal0207", 
             paperAvailable: true, 

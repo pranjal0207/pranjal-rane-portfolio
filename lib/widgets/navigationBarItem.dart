@@ -23,8 +23,6 @@ class NavigationBarItem extends StatelessWidget {
           ),
         ),
         onPressed: onPress,
-        style: TextButton.styleFrom(
-        ),
       ),
     );
   }

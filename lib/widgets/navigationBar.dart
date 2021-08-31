@@ -46,14 +46,14 @@ class _NavigationBarState extends State<NavigationBar> {
           TitleName(),
 
           Container(
-            height: 50,
+            height: 20,
             width: screenWidth * 0.25,
             child: ListView.builder(
               itemCount: widget.navigationItems.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index){
                 return Container(
-                  height: 50,
+                  height: 30,
                   width: screenWidth * 0.25 / widget.navigationItems.length,
                   child: NavigationBarItem(
                     title: widget.navigationItems[index], 

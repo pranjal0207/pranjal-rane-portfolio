@@ -35,7 +35,7 @@ class ProjectCard extends StatelessWidget {
       shadowColor: Colors.black,
       borderRadius: BorderRadius.circular(10),
       child: Container(
-        height: 700,
+        height: 550,
         width: (maxWidth - 80) /3,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,6 +62,9 @@ class ProjectCard extends StatelessWidget {
               longDescription: longDescription,
               technologies: technologies,
               projectScreenshots: projectScreenshots,
+              githubRepo: githubRepo,
+              researchPaper: paperLink,
+              isResearch: paperAvailable,
             )
           ],
         ),
@@ -174,6 +177,9 @@ class ProjectDescription extends StatelessWidget {
   final String description;
   final String longDescription;
   final List<String> projectScreenshots;
+  final String githubRepo;
+  final String researchPaper;
+  final bool isResearch;
   
   const ProjectDescription({ 
     required this.title,
@@ -181,6 +187,9 @@ class ProjectDescription extends StatelessWidget {
     required this.longDescription,
     required this.description,
     required this.projectScreenshots,
+    required this.githubRepo,
+    required this.researchPaper,
+    required this.isResearch,
     Key? key 
   }) : super(key: key);
 
@@ -205,7 +214,7 @@ class ProjectDescription extends StatelessWidget {
           if(screenWidth > 715)
           TextButton(
             onPressed: (){
-              showProjectDialog(context, title, technologies, longDescription, projectScreenshots);
+              showProjectDialog(context, title, technologies, longDescription, projectScreenshots, githubRepo, researchPaper, isResearch);
             }, 
             child: Text("Show more"),
             style: TextButton.styleFrom(
@@ -272,7 +281,7 @@ class ProjectTechnologies extends StatelessWidget {
   }
 }
 
-showProjectDialog(BuildContext context, String title, List<String> technologies, String longDescription, List<String> projectScreenshots){
+showProjectDialog(BuildContext context, String title, List<String> technologies, String longDescription, List<String> projectScreenshots, String githubRepo, String researchPaper, bool isResearch){
   int i, j;
   double screenWidth = MediaQuery.of(context).size.width;
   return showDialog(
@@ -387,18 +396,51 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
                 height: 20,
               ),
 
-              Container(
-                child: SelectableText(
-                  "Description : ",
-                  style:TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
+              Row(
+                children: <Widget>[
+                  Container(
+                    child: TextButton.icon(
+                      onPressed: (){
+                        js.context.callMethod('open', [githubRepo]);
+                      }, 
+                      icon: Image.asset("assets/icons/sourceCodeIcon.png"), 
+                      label: Text(
+                        "View Source Code",
+                        style: TextStyle(
+                          fontSize: 16
+                        ),
+                      )
+                    ),
                   ),
-                ),
+
+                  SizedBox(
+                    width: 20,
+                  ),
+
+                  if(isResearch)
+                  Container(
+                    child: TextButton.icon(
+                      onPressed: (){
+                        js.context.callMethod('open', [researchPaper]);
+                      }, 
+                      icon: Image.asset(
+                        "assets/icons/pdfIcon.png",
+                        height: 40,
+                        width: 40,
+                      ), 
+                      label: Text(
+                        "View Research Paper",
+                        style: TextStyle(
+                          fontSize: 16
+                        ),
+                      )
+                    ),
+                  ),
+                ],
               ),
 
               SizedBox(
-                height: 10,
+                height: 20,
               ),
 
               Expanded(
@@ -408,6 +450,20 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
                     child : Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
+                        Container(
+                          child: SelectableText(
+                            "Description : ",
+                            style:TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold
+                            ),
+                          ),
+                        ),
+
+                        SizedBox(
+                          height: 10,
+                        ),
+
                         Container(
                           child: SelectableText(
                             longDescription,
