@@ -38,7 +38,7 @@ class _NavigationBarState extends State<NavigationBar> {
     final double maxWidth = 1400;
     final double screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      padding: EdgeInsets.only(top : 25, bottom: 25, left: 15, right: 15),
+      padding: EdgeInsets.only(top : 25, bottom: 25),
       constraints: BoxConstraints(maxWidth: maxWidth),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,14 +47,14 @@ class _NavigationBarState extends State<NavigationBar> {
 
           Container(
             height: 20,
-            width: screenWidth * 0.25,
+            width: screenWidth * 0.3,
             child: ListView.builder(
               itemCount: widget.navigationItems.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index){
                 return Container(
                   height: 30,
-                  width: screenWidth * 0.25 / widget.navigationItems.length,
+                  width: screenWidth * 0.3 / widget.navigationItems.length,
                   child: NavigationBarItem(
                     title: widget.navigationItems[index], 
                     isActive: widget.navigationItemActiveState[index], 

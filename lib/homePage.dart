@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage>{
       ),
       body: SafeArea(
         child: LayoutBuilder(builder: (context, constraints){
-          if (constraints.maxWidth > 715)
+          if (constraints.maxWidth > 780)
             return desktopView();
           
           else

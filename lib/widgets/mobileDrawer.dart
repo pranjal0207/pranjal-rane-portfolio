@@ -25,7 +25,6 @@ class _MobileDrawerState extends State<MobileDrawer> {
 
     await Scrollable.ensureVisible(
       context,
-      alignment: 0.5,
       duration: Duration(milliseconds: 500)
     );
   }
