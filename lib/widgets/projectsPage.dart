@@ -66,7 +66,7 @@ class ProjectPage extends StatelessWidget {
                 paperLink: "",
                 technologies: [],
                 longDescription: "",
-                projectScreenshots: [],
+                projectScreenshots:["assets/projectImages/project11.png", "assets/projectImages/project12.png", "assets/projectImages/project13.png"],
               ),
 
               ProjectCard(
@@ -78,7 +78,7 @@ class ProjectPage extends StatelessWidget {
                 paperLink: "",
                 technologies: [],
                 longDescription: "",
-                projectScreenshots: [],
+                projectScreenshots: ["assets/projectImages/project11.png", "assets/projectImages/project12.png", "assets/projectImages/project13.png"],
               ),
             ],
           ),
@@ -99,7 +99,7 @@ class ProjectPage extends StatelessWidget {
                 paperLink: "https://www.ijariit.com/manuscripts/v7i4/V7I4-1684.pdf",
                 technologies: ["python", "opencv", "tensorflow", "flutter", "firebase"],
                 longDescription: "This system detects face masks in real-time videostreams. If no mask is found then a photograph is captured and given as an input to the face recognition system and the data is updated. The administrator is informed about this and can later take necessary actions against the defaulter, like reprimanding by sending an email or issuing a fine using the web based system. The administrator can also manage the database of the people using the web based system. The web based system also gives adetailed overview about the demography (pertaining to maskwearing) of the campus by giving comprehensive information using visual methods like bar graphs and pie charts.\nThis system detects face masks in real-time videostreams. If no mask is found then a photograph is captured and given as an input to the face recognition system and the data is updated. The administrator is informed about this and can later take necessary actions against the defaulter, like reprimanding by sending an email or issuing a fine using the web based system. The administrator can also manage the database of the people using the web based system. The web based system also gives adetailed overview about the demography (pertaining to maskwearing) of the campus by giving comprehensive information using visual methods like bar graphs and pie charts.\nThis system detects face masks in real-time videostreams. If no mask is found then a photograph is captured and given as an input to the face recognition system and the data is updated. The administrator is informed about this and can later take necessary actions against the defaulter, like reprimanding by sending an email or issuing a fine using the web based system. The administrator can also manage the database of the people using the web based system. The web based system also gives adetailed overview about the demography (pertaining to maskwearing) of the campus by giving comprehensive information using visual methods like bar graphs and pie charts.\nThis system detects face masks in real-time videostreams. If no mask is found then a photograph is captured and given as an input to the face recognition system and the data is updated. The administrator is informed about this and can later take necessary actions against the defaulter, like reprimanding by sending an email or issuing a fine using the web based system. The administrator can also manage the database of the people using the web based system. The web based system also gives adetailed overview about the demography (pertaining to maskwearing) of the campus by giving comprehensive information using visual methods like bar graphs and pie charts.\n",
-                projectScreenshots: [],
+                projectScreenshots: ["assets/projectImages/project11.png", "assets/projectImages/project12.png", "assets/projectImages/project13.png"],
               ),
 
               ProjectCard(
@@ -111,7 +111,7 @@ class ProjectPage extends StatelessWidget {
                 paperLink: "",
                 technologies: [],
                 longDescription: "",
-                projectScreenshots: [],
+                projectScreenshots: ["assets/projectImages/project11.png", "assets/projectImages/project12.png", "assets/projectImages/project13.png"],
               ),
 
               ProjectCard(
@@ -123,7 +123,7 @@ class ProjectPage extends StatelessWidget {
                 paperLink: "",
                 technologies: [],
                 longDescription: "",
-                projectScreenshots: [],
+                projectScreenshots: ["assets/projectImages/project11.png", "assets/projectImages/project12.png", "assets/projectImages/project13.png"],
               ),
             ],
           )
@@ -147,7 +147,7 @@ class ProjectPage extends StatelessWidget {
             paperLink: "https://www.ijariit.com/manuscripts/v7i4/V7I4-1684.pdf",
             technologies: ["python", "tensorflow", "flutter", "firebase", "opencv"],
             longDescription: "",
-            projectScreenshots: []
+            projectScreenshots: ["assets/projectImages/project11.png", "assets/projectImages/project12.png", "assets/projectImages/project13.png"],
           ),
 
           SizedBox(
@@ -163,7 +163,7 @@ class ProjectPage extends StatelessWidget {
             paperLink: "",
             technologies: [],
             longDescription: "",
-            projectScreenshots: [],
+            projectScreenshots: ["assets/projectImages/project11.png", "assets/projectImages/project12.png", "assets/projectImages/project13.png"],
           ),
 
           SizedBox(
@@ -179,7 +179,7 @@ class ProjectPage extends StatelessWidget {
             paperLink: "",
             technologies: [],
             longDescription: "",
-            projectScreenshots: [],
+            projectScreenshots: ["assets/projectImages/project11.png", "assets/projectImages/project12.png", "assets/projectImages/project13.png"],
           ),
         ],
       ),

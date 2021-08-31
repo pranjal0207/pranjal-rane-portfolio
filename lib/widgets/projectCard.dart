@@ -61,7 +61,7 @@ class ProjectCard extends StatelessWidget {
               description: description,
               longDescription: longDescription,
               technologies: technologies,
-              projectScreenshots: [],
+              projectScreenshots: projectScreenshots,
             )
           ],
         ),
@@ -186,7 +186,6 @@ class ProjectDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(projectScreenshots);
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       margin: EdgeInsets.only(top: 15, left: 10, right: 10),
@@ -274,7 +273,6 @@ class ProjectTechnologies extends StatelessWidget {
 }
 
 showProjectDialog(BuildContext context, String title, List<String> technologies, String longDescription, List<String> projectScreenshots){
-  print(projectScreenshots);
   int i, j;
   double screenWidth = MediaQuery.of(context).size.width;
   return showDialog(
@@ -406,6 +404,7 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
               Expanded(
                 child: SingleChildScrollView(
                   child : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Container(
                         child: SelectableText(
@@ -416,14 +415,32 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
                         ),
                       ),
 
+                      if(projectScreenshots.length > 0)
+                      Container(
+                        child: Text(
+                          "Project Screenshots : ",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(
+                        height: 20,
+                      ),
+
                       Container(
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            for (i = 0; i < projectScreenshots.length; i++)
+                            for (i = 0; i < projectScreenshots.length; i= i+3)
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 for (j = i; i < i+3 && j < projectScreenshots.length; j++)
                                 Container(
+                                  width: (maxWidth - 80)/3,
                                   child: Image.asset(projectScreenshots[j]),
                                 )
                               ],
@@ -431,7 +448,6 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
                           ],
                         ),
                       )
-
                     ],
                   )
                 )
