@@ -40,7 +40,7 @@ class ProjectPage extends StatelessWidget {
 
   Widget desktopView() {
     return Container(
-      constraints: BoxConstraints(maxWidth: maxWidth),
+      constraints: BoxConstraints(maxWidth: maxWidthDesktop),
       margin: EdgeInsets.only(top: 40, bottom: 40, left: 15, right: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -191,7 +191,7 @@ class ProjectPage extends StatelessWidget {
 
   Widget tabview() {
     return Container(
-      constraints: BoxConstraints(maxWidth: maxWidth),
+      constraints: BoxConstraints(maxWidth: maxWidthTablet),
       margin: EdgeInsets.only(top: 40, bottom: 40, left: 15, right: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

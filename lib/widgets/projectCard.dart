@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:js' as js;
 
-final double maxWidth = 1200;
+final double maxWidthDesktop = 1200;
+final double maxWidthTablet = 790;
 
 class ProjectCard extends StatelessWidget {
   final String title;
@@ -36,7 +37,7 @@ class ProjectCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       child: Container(
         height: 550,
-        width: (maxWidth - 80) /3,
+        width: (maxWidthDesktop - 80) /3,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -91,7 +92,7 @@ class ProjectImage extends StatelessWidget {
         child: Image.asset(
           coverImage,
           height: 200,
-          width: (maxWidth - 80) /3,
+          width: (maxWidthDesktop - 80) /3,
           fit: BoxFit.fill,
         ),
       )
@@ -121,7 +122,7 @@ class ProjectTitle extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
-            width: ((maxWidth - 80) / 3) * 0.73,
+            width: ((maxWidthDesktop - 80) / 3) * 0.73,
             child: SelectableText(
               title,
               style: TextStyle(
@@ -211,7 +212,7 @@ class ProjectDescription extends StatelessWidget {
             ),
           ),
 
-          if(screenWidth > 715)
+          if(screenWidth > 800)
           TextButton(
             onPressed: (){
               showProjectDialog(context, title, technologies, longDescription, projectScreenshots, githubRepo, researchPaper, isResearch);
@@ -284,6 +285,31 @@ class ProjectTechnologies extends StatelessWidget {
 showProjectDialog(BuildContext context, String title, List<String> technologies, String longDescription, List<String> projectScreenshots, String githubRepo, String researchPaper, bool isResearch){
   int i, j;
   double screenWidth = MediaQuery.of(context).size.width;
+
+  print(screenWidth);
+
+  bool desktop;
+  int techScreenItems;
+  int pictureScreenItems;
+  double selectedWidth;
+
+  if(screenWidth > 1200)
+    desktop = true;
+  else 
+    desktop = false;
+
+  if(desktop){
+    techScreenItems = 5;
+    pictureScreenItems = 3;
+    selectedWidth = maxWidthDesktop;
+  }
+
+  else{
+    techScreenItems = 3;
+    pictureScreenItems = 2;
+    selectedWidth = maxWidthTablet;
+  }
+
   return showDialog(
     context: context, 
     builder: (context){
@@ -291,7 +317,7 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Container(
           padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
-          width: maxWidth,
+          width: selectedWidth,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -300,7 +326,7 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-                      width : maxWidth * 0.8,
+                      width : selectedWidth * 0.75,
                       child: SelectableText(
                         title,
                         style: TextStyle(
@@ -331,7 +357,7 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
                 child: Row(
                   children: <Widget>[
                     Container(
-                      width: (maxWidth - 40) * 0.2,
+                      width: (selectedWidth - 40) * 0.25,
                       child: Text(
                         (screenWidth > 715)? "Technologies Used : " : "Technologies:",
                         style: TextStyle(
@@ -342,39 +368,38 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
                     ),
 
                     SizedBox(
-                      height: 20,
+                      width: 20,
                     ),
 
                     Expanded(
                       child: Column(
                         children: <Widget>[
-                          for(i = 0; i < technologies.length; i = i + 5)
+                          for(i = 0; i < technologies.length; i = i + techScreenItems)
                           Container(
-                            margin: (technologies.length > 5)? EdgeInsets.only(bottom: 20) : EdgeInsets.zero,
+                            margin: (technologies.length > techScreenItems)? EdgeInsets.only(bottom: 20) : EdgeInsets.zero,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
-                                for (j = i; j < i + 5 && j < technologies.length; j ++)
+                                for (j = i; j < i + techScreenItems && j < technologies.length; j ++)
                                 Container(
-                                  width: ((maxWidth - 40) * 0.8) / 5,
+                                  width: ((selectedWidth - 190) * 0.75) / techScreenItems,
                                   child : Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
                                       Container(
                                         margin: EdgeInsets.only(right: 3),
                                         child: Image.asset(
                                           "assets/icons/" + technologies[j] + "Icon.png",
-                                          height: 40,
-                                          width: 40,
+                                          height: (desktop)? 40 : 30,
+                                          width: (desktop)? 40 : 30,
                                         )
                                       ),
 
-                                      if((screenWidth > 715))
                                       Container(
                                         child: SelectableText(
                                           technologies[j][0].toUpperCase() + technologies[j].substring(1),
                                           style: TextStyle(
-                                            fontSize: 18,
+                                            fontSize: (desktop)? 18:16,
                                             fontWeight: FontWeight.bold
                                           ),
                                         ),
@@ -492,14 +517,14 @@ showProjectDialog(BuildContext context, String title, List<String> technologies,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              for (i = 0; i < projectScreenshots.length; i= i + 3)
+                              for (i = 0; i < projectScreenshots.length; i= i + pictureScreenItems)
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
-                                  for (j = i; j < i + 3 && j < projectScreenshots.length; j++)
+                                  for (j = i; j < i + pictureScreenItems && j < projectScreenshots.length; j++)
                                   Container(
                                     margin: EdgeInsets.only(bottom: 15),
-                                    width: (maxWidth - 100)/3,
+                                    width: (selectedWidth - 150)/pictureScreenItems,
                                     child: Image.asset(projectScreenshots[j]),
                                   )
                                 ],
