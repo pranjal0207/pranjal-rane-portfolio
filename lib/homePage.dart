@@ -3,6 +3,7 @@ import 'package:pranjal_rane_portfolio/widgets/NavigationBar.dart';
 import 'package:pranjal_rane_portfolio/widgets/aboutPage.dart';
 import 'package:pranjal_rane_portfolio/widgets/contactPage.dart';
 import 'package:pranjal_rane_portfolio/widgets/copyright.dart';
+import 'package:pranjal_rane_portfolio/widgets/landingPage.dart';
 import 'package:pranjal_rane_portfolio/widgets/mobileDrawer.dart';
 import 'package:pranjal_rane_portfolio/widgets/mobileNavigationBar.dart';
 import 'package:pranjal_rane_portfolio/widgets/projectsPage.dart';
@@ -69,20 +70,20 @@ class _HomePageState extends State<HomePage>{
           child: Scrollbar(
             child: SingleChildScrollView(
               child: Column(
-                children: [
-                  Container(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  LandingPage(),
+
+                  AboutPage(
                     key: aboutKey,
-                    child: AboutPage(),
                   ),
 
-                  Container(
-                    key: projectKey,
-                    child: ProjectPage(),
+                  ProjectPage(
+                  key: projectKey,
                   ),
 
-                  Container(
+                  ContactPage(
                     key: contactKey,
-                    child: ContactPage(),
                   ),
 
                   Copyright()
