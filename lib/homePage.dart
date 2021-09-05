@@ -61,7 +61,8 @@ class _HomePageState extends State<HomePage>{
         NavigationBar(
           navigationItems: navigationItems, 
           navigationItemsKeys: navigationItemsKeys,
-          navigationItemActiveState : navigationItemActiveState
+          navigationItemActiveState : navigationItemActiveState,
+          resume: "https://drive.google.com/file/d/1eAk6Wt60WtcaGnzjhLGJWxCSg_iB3IgZ/view?usp=sharing",
         ),
         
         Expanded(

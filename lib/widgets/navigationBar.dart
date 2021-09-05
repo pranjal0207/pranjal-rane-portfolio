@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:pranjal_rane_portfolio/widgets/navigationBarItem.dart';
 import 'package:pranjal_rane_portfolio/widgets/titleName.dart';
+import 'dart:js' as js;
 
 class NavigationBar extends StatefulWidget {
   final List<String> navigationItems;
   final List<dynamic> navigationItemsKeys;
   final List<bool> navigationItemActiveState;
+  final String resume;
   
   const NavigationBar({  
     required this.navigationItems,
     required this.navigationItemsKeys,
     required this.navigationItemActiveState,
+    required this.resume,
     Key? key 
   }) : super(key: key);
 
@@ -46,34 +49,42 @@ class _NavigationBarState extends State<NavigationBar> {
           TitleName(),
 
           Container(
-            height: 30,
-            width: screenWidth * 0.3,
-            child: ListView.builder(
-              itemCount: widget.navigationItems.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index){
-                return Container(
+            width: screenWidth * 0.4,
+            child: Row(
+              children: <Widget>[
+                for(int i = 0; i < widget.navigationItems.length + 1; i++)
+                Container(
                   height: 30,
-                  width: screenWidth * 0.3 / widget.navigationItems.length,
-                  child: NavigationBarItem(
-                    title: widget.navigationItems[index], 
-                    isActive: widget.navigationItemActiveState[index], 
+                  width: screenWidth * 0.4 / (widget.navigationItems.length + 1),
+                  child: (i < widget.navigationItems.length)? NavigationBarItem(
+                    title: widget.navigationItems[i], 
+                    isActive: widget.navigationItemActiveState[i], 
                     onPress: (){
-                      scrollPage(widget.navigationItemsKeys[index]);
+                      scrollPage(widget.navigationItemsKeys[i]);
                       setState(() {
-                        for (int i = 0; i < widget.navigationItems.length; i++){
-                          if(i == index)
-                            widget.navigationItemActiveState[i] = true;
+                        for (int j = 0; j < widget.navigationItems.length; j++){
+                          if(j == i)
+                            widget.navigationItemActiveState[j] = true;
                           else 
-                            widget.navigationItemActiveState[i] = false;
+                            widget.navigationItemActiveState[j] = false;
                         }
                       });
                     }
+                  ): 
+                  ElevatedButton(
+                    onPressed: (){
+                      js.context.callMethod('open', [widget.resume]);
+                    }, 
+                    child: Text("Resume"),
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: Size(30, 30)
+                    ),
                   ),
-                );
-              }
+                )
+              ]
             ),
           )
+          
         ],
       ),
     );

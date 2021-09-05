@@ -14,9 +14,8 @@ class ProjectPage extends StatelessWidget {
             child: SelectableText(
               "MY PROJECTS",
               style: TextStyle(
-                fontSize: 25,
+                fontSize: 40,
                 fontWeight: FontWeight.bold,
-                decoration: TextDecoration.underline
               ),
             ),
           ),

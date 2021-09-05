@@ -10,18 +10,20 @@ class ContactPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-
+    double screenHeight = MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.only(left : 10, right: 10),
       width: screenWidth - 20,
+      height: screenHeight * 0.8,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children : <Widget>[
           Container(
             child: SelectableText(
               "Contact Me",
               style: TextStyle(
-                fontSize: 25,
+                fontSize: 40,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -35,7 +37,7 @@ class ContactPage extends StatelessWidget {
             child: SelectableText(
               "Need anything built, want to work together or simply want to have a chat?",
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 20,
               ),
               textAlign: TextAlign.center,
             ),
@@ -45,10 +47,14 @@ class ContactPage extends StatelessWidget {
             child: SelectableText(
               "Drop me a mail at pranjal020700@gmail.com, or click one of the icons below :",
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 20,
               ),
               textAlign: TextAlign.center,
             ),
+          ),
+
+          SizedBox(
+            height: 15,
           ),
 
           Container(
