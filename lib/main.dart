@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pranjal_rane_portfolio/homePage.dart';
+import 'package:pranjal_rane_portfolio/landingPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,12 +13,13 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        textTheme: GoogleFonts.ralewayTextTheme(Theme.of(context).textTheme),
+        backgroundColor: Colors.red,
+        textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
         splashColor: Colors.transparent,
         hoverColor: Colors.transparent,
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: LandingPage(),
     );
   }
 }

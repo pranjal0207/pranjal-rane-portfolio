@@ -36,7 +36,7 @@ class ProjectCard extends StatelessWidget {
       shadowColor: Colors.black,
       borderRadius: BorderRadius.circular(10),
       child: Container(
-        height: 550,
+        height: 600,
         width: (maxWidthDesktop - 80) /3,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -207,7 +207,7 @@ class ProjectDescription extends StatelessWidget {
               description,
               textAlign: TextAlign.justify,
               style: TextStyle(
-                fontSize: 17
+                fontSize: 15
               ),
             ),
           ),

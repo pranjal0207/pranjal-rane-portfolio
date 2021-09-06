@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:pranjal_rane_portfolio/widgets/HomePage.dart';
 import 'package:pranjal_rane_portfolio/widgets/NavigationBar.dart';
 import 'package:pranjal_rane_portfolio/widgets/aboutPage.dart';
 import 'package:pranjal_rane_portfolio/widgets/contactPage.dart';
 import 'package:pranjal_rane_portfolio/widgets/copyright.dart';
-import 'package:pranjal_rane_portfolio/widgets/landingPage.dart';
 import 'package:pranjal_rane_portfolio/widgets/mobileDrawer.dart';
 import 'package:pranjal_rane_portfolio/widgets/mobileNavigationBar.dart';
 import 'package:pranjal_rane_portfolio/widgets/projectsPage.dart';
 
-class HomePage extends StatefulWidget {
+class LandingPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _LandingPageState createState() => _LandingPageState();
 }
 
-class _HomePageState extends State<HomePage>{
+class _LandingPageState extends State<LandingPage>{
   final aboutKey = GlobalKey();
   final projectKey = GlobalKey();
   final contactKey = GlobalKey();
@@ -38,6 +38,7 @@ class _HomePageState extends State<HomePage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       key: _scaffoldKey,
       drawer: MobileDrawer(
         drawerItems: navigationItems,
@@ -70,9 +71,9 @@ class _HomePageState extends State<HomePage>{
           child: Scrollbar(
             child: SingleChildScrollView(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                //mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  LandingPage(),
+                  HomePage(),
 
                   AboutPage(
                     key: aboutKey,
@@ -85,8 +86,8 @@ class _HomePageState extends State<HomePage>{
                   ContactPage(
                     key: contactKey,
                   ),
-
-                  Copyright()
+                  
+                  Copyright(),
                 ],
               ),
             )

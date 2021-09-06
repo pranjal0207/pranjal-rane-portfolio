@@ -12,7 +12,7 @@ class ProjectPage extends StatelessWidget {
           margin: EdgeInsets.only(top: 40),
           child: Center(
             child: SelectableText(
-              "MY PROJECTS",
+              "Projects",
               style: TextStyle(
                 fontSize: 40,
                 fontWeight: FontWeight.bold,
