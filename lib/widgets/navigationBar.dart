@@ -38,7 +38,7 @@ class _NavigationBarState extends State<NavigationBar> {
 
   @override
   Widget build(BuildContext context) {
-    final double maxWidth = 1400;
+    final double maxWidth = 1200;
     final double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       padding: EdgeInsets.only(top : 25, bottom: 25, left : 20, right: 20),

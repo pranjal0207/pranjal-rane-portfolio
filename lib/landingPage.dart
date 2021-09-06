@@ -71,6 +71,7 @@ class _LandingPageState extends State<LandingPage>{
           child: Scrollbar(
             child: SingleChildScrollView(
               child: Column(
+                //crossAxisAlignment: CrossAxisAlignment.start,
                 //mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   HomePage(),
@@ -107,6 +108,8 @@ class _LandingPageState extends State<LandingPage>{
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  HomePage(),
+
                   Container(
                     key: aboutKey,
                     child: AboutPage(),
