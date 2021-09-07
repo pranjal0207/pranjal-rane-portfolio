@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pranjal_rane_portfolio/widgets/navigationBarItem.dart';
+import 'package:pranjal_rane_portfolio/widgets/resumeButton.dart';
 import 'package:pranjal_rane_portfolio/widgets/titleName.dart';
 import 'dart:js' as js;
 
@@ -41,7 +42,7 @@ class _NavigationBarState extends State<NavigationBar> {
   @override
   Widget build(BuildContext context) {
     final double maxWidth = 1200;
-    final double screenWidth = MediaQuery.of(context).size.width;
+    //final double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       padding: EdgeInsets.only(top : 25, bottom: 25, left : 20, right: 20),
       constraints: BoxConstraints(maxWidth: maxWidth),
@@ -78,39 +79,9 @@ class _NavigationBarState extends State<NavigationBar> {
             ),
           ),
 
-          Container(
-            child: MouseRegion(
-              onHover: (_){
-                setState(() {
-                  hover = true;
-                });
-              },
-              onExit: (_){
-                setState(() {
-                  hover = false;
-                });
-              },
-              child: ElevatedButton(
-                child: Text(
-                  "Resume",
-                  style: TextStyle(
-                    color: (hover)? Colors.white : Color(0xff805ad5),
-                    fontWeight: FontWeight.w200,
-                    fontSize: 17
-                  ),
-                ),
-                onPressed: () {
-                  js.context.callMethod('open', ["https://drive.google.com/file/d/1eAk6Wt60WtcaGnzjhLGJWxCSg_iB3IgZ/view?usp=sharing"]);
-                },
-                style: ElevatedButton.styleFrom(
-                  side: BorderSide(color: Color(0xff805ad5)),
-                  primary: (hover)? Color(0xff805ad5) : Colors.white,
-                  fixedSize: Size(100, 40),
-                  shadowColor: Colors.white
-                ),
-              ),
-            ),
-          )         
+          ResumeButton(
+            resumeLink: "https://drive.google.com/file/d/1eAk6Wt60WtcaGnzjhLGJWxCSg_iB3IgZ/view?usp=sharing"
+          )        
         ],
       ),
     );

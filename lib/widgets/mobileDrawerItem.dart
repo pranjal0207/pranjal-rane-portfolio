@@ -14,16 +14,15 @@ class MobileDrawerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(
+    return TextButton(
+      onPressed: onPress, 
+      child: Text(
         title,
         style: TextStyle(
-          color: (isActive)? Colors.blue : Colors.black,
-          fontSize: 18
+          color: (isActive)? Color(0xff805ad5) : Colors.black,
+          fontSize: 22
         ),
-      ),
-      onTap: onPress,
-      hoverColor: Colors.blue.shade100,
+      )
     );
   }
 }
