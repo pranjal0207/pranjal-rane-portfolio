@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pranjal_rane_portfolio/widgets/contactPage.dart';
+import 'package:pranjal_rane_portfolio/widgets/getInTouch.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({ Key? key }) : super(key: key);
@@ -77,7 +77,9 @@ class HomePage extends StatelessWidget {
               ),
 
               Container(
-                child: GetInTouch(email: "pranjal020700@gmail.com"),
+                child: GetInTouch(
+                  email: "pranjal020700@gmail.com"
+                ),
               )    
             ],
           ),
@@ -158,7 +160,9 @@ class HomePage extends StatelessWidget {
           ),
 
           Container(
-            child: GetInTouch(email: "pranjal020700@gmail.com"),
+            child: GetInTouch(
+              email: "pranjal020700@gmail.com"
+            ),
           )    
         ],
       ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pranjal_rane_portfolio/widgets/resumeButton.dart';
 import 'package:pranjal_rane_portfolio/widgets/socialNetworks.dart';
-import 'dart:js' as js;
 import 'mobileDrawerItem.dart';
 
 class MobileDrawer extends StatefulWidget {
