@@ -12,9 +12,9 @@ class ContactPage extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.only(left : 10, right: 10),
-      padding: EdgeInsets.only(top: 50, bottom: 80),
+      padding: EdgeInsets.only(top: 50),
       width: screenWidth - 20,
-      height: (screenHeight < 780)? screenHeight : screenHeight * 0.6,
+      height: (screenHeight < 780)? screenHeight : screenHeight * 0.4,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -48,12 +48,12 @@ class ContactPage extends StatelessWidget {
           GetInTouch(email: "pranjal020700@gmail.com"),
 
           SizedBox(
-            height: 15,
+            height: 35,
           ),
 
           Expanded(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+              //mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Container(
                   child: Row(

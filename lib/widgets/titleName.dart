@@ -6,11 +6,12 @@ class TitleName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 30,
       child: SelectableText(
-        "PRANJAL RANE",
+        "Pranjal Rane",
         style: TextStyle(
           fontSize: 20,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w700,
         ),
       )
     );

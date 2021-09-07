@@ -22,6 +22,8 @@ class NavigationBar extends StatefulWidget {
 }
 
 class _NavigationBarState extends State<NavigationBar> {
+  bool hover = false;
+
   Future scrollPage(key) async{
     final context = key.currentContext!;
 
@@ -49,14 +51,14 @@ class _NavigationBarState extends State<NavigationBar> {
           TitleName(),
 
           Container(
-            width: screenWidth * 0.4,
+            width: maxWidth * 0.3,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                for(int i = 0; i < widget.navigationItems.length + 1; i++)
+                for(int i = 0; i < widget.navigationItems.length; i++)
                 Container(
                   height: 30,
-                  width: screenWidth * 0.4 / (widget.navigationItems.length + 1),
-                  child: (i < widget.navigationItems.length)? NavigationBarItem(
+                  child:  NavigationBarItem(
                     title: widget.navigationItems[i], 
                     isActive: widget.navigationItemActiveState[i], 
                     onPress: (){
@@ -70,21 +72,45 @@ class _NavigationBarState extends State<NavigationBar> {
                         }
                       });
                     }
-                  ): 
-                  ElevatedButton(
-                    onPressed: (){
-                      js.context.callMethod('open', [widget.resume]);
-                    }, 
-                    child: Text("Resume"),
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: Size(30, 30)
-                    ),
-                  ),
+                  )
                 )
               ]
             ),
-          )
-          
+          ),
+
+          Container(
+            child: MouseRegion(
+              onHover: (_){
+                setState(() {
+                  hover = true;
+                });
+              },
+              onExit: (_){
+                setState(() {
+                  hover = false;
+                });
+              },
+              child: ElevatedButton(
+                child: Text(
+                  "Resume",
+                  style: TextStyle(
+                    color: (hover)? Colors.white : Color(0xff805ad5),
+                    fontWeight: FontWeight.w200,
+                    fontSize: 17
+                  ),
+                ),
+                onPressed: () {
+                  js.context.callMethod('open', ["https://drive.google.com/file/d/1eAk6Wt60WtcaGnzjhLGJWxCSg_iB3IgZ/view?usp=sharing"]);
+                },
+                style: ElevatedButton.styleFrom(
+                  side: BorderSide(color: Color(0xff805ad5)),
+                  primary: (hover)? Color(0xff805ad5) : Colors.white,
+                  fixedSize: Size(100, 40),
+                  shadowColor: Colors.white
+                ),
+              ),
+            ),
+          )         
         ],
       ),
     );

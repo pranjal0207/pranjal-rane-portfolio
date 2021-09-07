@@ -18,7 +18,7 @@ class NavigationBarItem extends StatelessWidget {
         child: Text(
           title,
           style: TextStyle(
-            color: (isActive)? Colors.blue : Colors.black,
+            color: (isActive)? Color(0xff805ad5) : Colors.black,
             fontSize: 18
           ),
         ),

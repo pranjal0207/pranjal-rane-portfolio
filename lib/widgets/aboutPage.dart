@@ -6,7 +6,7 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 40, bottom: 40),
+      margin: EdgeInsets.only(top: 20, bottom: 40),
       constraints: BoxConstraints(maxWidth: 1400),
       child: Column(
         children: <Widget>[
@@ -25,12 +25,12 @@ class AboutPage extends StatelessWidget {
           ),
 
           LayoutBuilder(builder: (context, constraints){
-          if (constraints.maxWidth > 780)
-            return desktopView();
-          
-          else
-            return mobileView();
-        })
+            if (constraints.maxWidth > 780)
+              return desktopView();
+            
+            else
+              return mobileView();
+          })
         ]
       ),
     );
