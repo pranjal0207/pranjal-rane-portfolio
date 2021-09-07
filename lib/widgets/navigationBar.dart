@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pranjal_rane_portfolio/widgets/navigationBarItem.dart';
 import 'package:pranjal_rane_portfolio/widgets/resumeButton.dart';
 import 'package:pranjal_rane_portfolio/widgets/titleName.dart';
-import 'dart:js' as js;
 
 class NavigationBar extends StatefulWidget {
   final List<String> navigationItems;
