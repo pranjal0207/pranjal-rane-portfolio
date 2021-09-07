@@ -13,11 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Pranjal Rane',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        backgroundColor: Colors.red,
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
-        splashColor: Colors.transparent,
-        hoverColor: Colors.transparent,
-        primarySwatch: Colors.blue,
       ),
       home: LandingPage(),
     );

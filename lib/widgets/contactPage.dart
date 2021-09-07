@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:js' as js;
 import 'package:mailto/mailto.dart';
+import 'package:pranjal_rane_portfolio/widgets/socialNetworks.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactPage extends StatelessWidget {
@@ -12,9 +12,8 @@ class ContactPage extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.only(left : 10, right: 10),
-      padding: EdgeInsets.only(top: 50),
       width: screenWidth - 20,
-      height: (screenHeight < 780)? screenHeight : screenHeight * 0.4,
+      height: (screenHeight < 780)? screenHeight : screenHeight * 0.8,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,77 +50,10 @@ class ContactPage extends StatelessWidget {
             height: 35,
           ),
 
-          Expanded(
-            child: Column(
-              //mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      IconButton(
-                        onPressed: (){
-                          js.context.callMethod('open', ["https://github.com/pranjal0207"]);
-                        }, 
-                        icon: Image.asset(
-                          "assets/icons/githubIcon.png",
-                          height: 48,
-                          width: 48,
-                        ),
-                        splashColor: Colors.transparent,
-                        splashRadius: 0.1,
-                        iconSize: 15,
-                        tooltip : "GitHub"
-                      ),
-
-                      SizedBox(
-                        width: 10,
-                      ),
-
-                      IconButton(
-                        onPressed: () {
-                          js.context.callMethod('open', ["https://www.linkedin.com/in/pranjal-rane/"]);
-                        }, 
-                        icon: Image.asset(
-                          "assets/icons/linkedinIcon.png",
-                          height: 48,
-                          width: 48,
-                        ),
-                        splashColor: Colors.transparent,
-                        splashRadius: 0.1,
-                        iconSize: 15,
-                        tooltip : "LinkedIn"
-                      ),
-
-                      SizedBox(
-                        width: 10,
-                      ),
-
-                      IconButton(
-                        onPressed: () {
-                          js.context.callMethod('open', ["https://twitter.com/pranjal_rane"]);
-                        }, 
-                        icon: Image.asset(
-                          "assets/icons/twitterIcon.png",
-                          height: 48,
-                          width: 48,
-                        ),
-                        splashColor: Colors.transparent,
-                        splashRadius: 0.1,
-                        iconSize: 15,
-                        tooltip : "Twitter"
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            )
-          
+          SocialNetworks(
+            socialNetworks: ['github', 'linkedin', 'twitter'],
+            socialNetworkLinks: ["https://github.com/pranjal0207", "https://www.linkedin.com/in/pranjal-rane/", "https://twitter.com/pranjal_rane"],
           ),
-
-          SizedBox(
-            height: 30,
-          )
         ]
       ),
     );

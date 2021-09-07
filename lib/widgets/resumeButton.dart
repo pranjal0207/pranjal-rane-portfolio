@@ -35,7 +35,7 @@ class _ResumeButtonState extends State<ResumeButton> {
             style: TextStyle(
               color: (hover)? Colors.white : Color(0xff805ad5),
               fontWeight: FontWeight.w200,
-              fontSize: 17
+              fontSize: 16
             ),
           ),
           onPressed: () {
@@ -44,7 +44,7 @@ class _ResumeButtonState extends State<ResumeButton> {
           style: ElevatedButton.styleFrom(
             side: BorderSide(color: Color(0xff805ad5)),
             primary: (hover)? Color(0xff805ad5) : Colors.white,
-            fixedSize: Size(100, 40),
+            fixedSize: Size(120, 40),
             shadowColor: Colors.white
           ),
         ),
